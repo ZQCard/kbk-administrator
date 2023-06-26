@@ -1,0 +1,382 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: 管理员服务
+    description: 管理员服务
+    contact:
+        name: qi.zhou
+    version: 0.0.1
+paths:
+    /administrator:
+        get:
+            tags:
+                - AdministratorService
+            description: 管理员详情
+            operationId: AdministratorService_GetAdministrator
+            parameters:
+                - name: id
+                  in: query
+                  description: id
+                  schema:
+                    type: integer
+                    format: int64
+                - name: username
+                  in: query
+                  description: 用户名
+                  schema:
+                    type: string
+                - name: mobile
+                  in: query
+                  description: 手机号
+                  schema:
+                    type: string
+                - name: role
+                  in: query
+                  description: 角色
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/administrator.v1.Administrator'
+        put:
+            tags:
+                - AdministratorService
+            description: 更新管理员
+            operationId: AdministratorService_UpdateAdministrator
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/administrator.v1.UpdateAdministratorReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+        post:
+            tags:
+                - AdministratorService
+            description: 新增管理员
+            operationId: AdministratorService_CreateAdministrator
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/administrator.v1.CreateAdministratorReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/administrator.v1.Administrator'
+        delete:
+            tags:
+                - AdministratorService
+            description: 删除管理员
+            operationId: AdministratorService_DeleteAdministrator
+            parameters:
+                - name: id
+                  in: query
+                  description: id
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+        patch:
+            tags:
+                - AdministratorService
+            description: 恢复管理员
+            operationId: AdministratorService_RecoverAdministrator
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/administrator.v1.RecoverAdministratorReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+    /administrator/login/success:
+        patch:
+            tags:
+                - AdministratorService
+            operationId: AdministratorService_AdministratorLoginSuccess
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/administrator.v1.AdministratorLoginSuccessReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+    /administrator/password/verify:
+        post:
+            tags:
+                - AdministratorService
+            description: 验证管理员密码
+            operationId: AdministratorService_VerifyAdministratorPassword
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/administrator.v1.VerifyAdministratorPasswordReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+    /administrator/status:
+        patch:
+            tags:
+                - AdministratorService
+            description: 更改管理员状态
+            operationId: AdministratorService_AdministratorStatusChange
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/administrator.v1.AdministratorStatusChangeReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+    /administrators:
+        get:
+            tags:
+                - AdministratorService
+            description: 列表
+            operationId: AdministratorService_GetAdministratorList
+            parameters:
+                - name: page
+                  in: query
+                  description: 页码
+                  schema:
+                    type: integer
+                    format: int64
+                - name: pageSize
+                  in: query
+                  description: 页记录数
+                  schema:
+                    type: integer
+                    format: int64
+                - name: username
+                  in: query
+                  description: 用户名
+                  schema:
+                    type: string
+                - name: mobile
+                  in: query
+                  description: 手机号
+                  schema:
+                    type: string
+                - name: nickname
+                  in: query
+                  description: 昵称
+                  schema:
+                    type: string
+                - name: status.value
+                  in: query
+                  description: The bool value.
+                  schema:
+                    type: boolean
+                - name: createdAtStart
+                  in: query
+                  description: 创建开始时间 YYYY-MM-dd
+                  schema:
+                    type: string
+                - name: createdAtEnd
+                  in: query
+                  description: 创建结束时间 YYYY-MM-dd
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/administrator.v1.GetAdministratorListPageRes'
+components:
+    schemas:
+        administrator.v1.Administrator:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: id
+                    format: int64
+                username:
+                    type: string
+                    description: 用户名
+                mobile:
+                    type: string
+                    description: 手机号
+                nickname:
+                    type: string
+                    description: 昵称
+                avatar:
+                    type: string
+                    description: 昵称
+                status:
+                    type: boolean
+                    description: 状态 true正常 false冻结
+                role:
+                    type: string
+                    description: 角色
+                lastLoginTime:
+                    type: string
+                    description: 上次登录时间
+                lastLoginIp:
+                    type: string
+                    description: 上次登录ip
+                createdAt:
+                    type: string
+                    description: 创建时间
+                updatedAt:
+                    type: string
+                    description: 更新时间
+                deletedAt:
+                    type: string
+                    description: 删除时间
+        administrator.v1.AdministratorLoginSuccessReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                lastLoginTime:
+                    type: string
+                lastLoginIp:
+                    type: string
+        administrator.v1.AdministratorStatusChangeReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: id
+                    format: int64
+                status:
+                    type: boolean
+                    description: 状态 true正常 false冻结
+        administrator.v1.CheckResponse:
+            type: object
+            properties:
+                success:
+                    type: boolean
+                    description: 是否成功
+        administrator.v1.CreateAdministratorReq:
+            type: object
+            properties:
+                username:
+                    type: string
+                    description: 用户名
+                password:
+                    type: string
+                    description: 密码
+                mobile:
+                    type: string
+                    description: 手机号
+                nickname:
+                    type: string
+                    description: 昵称
+                avatar:
+                    type: string
+                    description: 头像
+                status:
+                    type: boolean
+                    description: 状态 true正常 false冻结
+                role:
+                    type: string
+                    description: 当前角色
+        administrator.v1.GetAdministratorListPageRes:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    description: 总记录数
+                    format: int64
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/administrator.v1.Administrator'
+                    description: 列表
+        administrator.v1.RecoverAdministratorReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: id
+                    format: int64
+        administrator.v1.UpdateAdministratorReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: id
+                    format: int64
+                username:
+                    type: string
+                    description: 用户名
+                password:
+                    type: string
+                    description: 密码
+                mobile:
+                    type: string
+                    description: 手机号
+                nickname:
+                    type: string
+                    description: 昵称
+                avatar:
+                    type: string
+                    description: 头像
+                status:
+                    type: boolean
+                    description: 状态 true正常 false冻结
+                role:
+                    type: string
+                    description: 角色
+        administrator.v1.VerifyAdministratorPasswordReq:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: id
+                    format: int64
+                password:
+                    type: string
+                    description: 密码
+tags:
+    - name: AdministratorService
