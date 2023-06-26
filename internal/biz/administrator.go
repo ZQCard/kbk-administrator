@@ -5,9 +5,9 @@ import (
 
 	"github.com/go-kratos/kratos/v2/log"
 
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-administrator/api/administrator/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/internal/domain"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/pkg/utils/encryptHelper"
+	v1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
+	"github.com/ZQCard/kbk-administrator/internal/domain"
+	"github.com/ZQCard/kbk-administrator/pkg/utils/encryptHelper"
 )
 
 type AdministratorRepo interface {

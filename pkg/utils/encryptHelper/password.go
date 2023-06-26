@@ -1,7 +1,7 @@
 package encryptHelper
 
 import (
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/pkg/utils/stringHelper"
+	"github.com/ZQCard/kbk-administrator/pkg/utils/stringHelper"
 )
 
 // HashPassword 密码加密

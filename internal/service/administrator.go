@@ -5,10 +5,10 @@ import (
 
 	"github.com/go-kratos/kratos/v2/log"
 
-	administratorV1 "github.com/ZQCard/kratos-base-kit/kbk-administrator/api/administrator/v1"
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-administrator/api/administrator/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/internal/biz"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/internal/domain"
+	administratorV1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
+	v1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
+	"github.com/ZQCard/kbk-administrator/internal/biz"
+	"github.com/ZQCard/kbk-administrator/internal/domain"
 )
 
 type AdministratorService struct {

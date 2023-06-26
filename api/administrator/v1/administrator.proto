@@ -11,7 +11,7 @@ import "openapiv3/annotations.proto";
 
 import "google/protobuf/wrappers.proto";
 
-option go_package = "github.com/ZQCard/kratos-base-kit/kbk-administrator/api/administrator/v1;v1";
+option go_package = "github.com/ZQCard/kbk-administrator/api/administrator/v1;v1";
 
 option (openapi.v3.document) = {
     info: {

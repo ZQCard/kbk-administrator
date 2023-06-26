@@ -3,11 +3,11 @@ package data
 import (
 	"context"
 
-	v1 "github.com/ZQCard/kratos-base-kit/kbk-administrator/api/administrator/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/internal/biz"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/internal/domain"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/pkg/utils/encryptHelper"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/pkg/utils/timeHelper"
+	v1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
+	"github.com/ZQCard/kbk-administrator/internal/biz"
+	"github.com/ZQCard/kbk-administrator/internal/domain"
+	"github.com/ZQCard/kbk-administrator/pkg/utils/encryptHelper"
+	"github.com/ZQCard/kbk-administrator/pkg/utils/timeHelper"
 	"github.com/go-kratos/kratos/v2/errors"
 	"github.com/go-kratos/kratos/v2/log"
 	"gorm.io/gorm"

@@ -1,10 +1,10 @@
 package server
 
 import (
-	administratorV1 "github.com/ZQCard/kratos-base-kit/kbk-administrator/api/administrator/v1"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/internal/conf"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/internal/service"
-	"github.com/ZQCard/kratos-base-kit/kbk-administrator/pkg/middleware/requestInfo"
+	administratorV1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
+	"github.com/ZQCard/kbk-administrator/internal/conf"
+	"github.com/ZQCard/kbk-administrator/internal/service"
+	"github.com/ZQCard/kbk-administrator/pkg/middleware/requestInfo"
 	tracesdk "go.opentelemetry.io/otel/sdk/trace"
 
 	"github.com/go-kratos/kratos/v2/log"

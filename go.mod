@@ -1,4 +1,4 @@
-module github.com/ZQCard/kratos-base-kit/kbk-administrator
+module github.com/ZQCard/kbk-administrator
 
 go 1.20
 
