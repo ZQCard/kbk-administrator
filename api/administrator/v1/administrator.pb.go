@@ -41,7 +41,7 @@ type GetAdministratorListReq struct {
 	Mobile string `protobuf:"bytes,4,opt,name=mobile,proto3" json:"mobile,omitempty"`
 	// 昵称
 	Nickname string `protobuf:"bytes,5,opt,name=nickname,proto3" json:"nickname,omitempty"`
-	// 状态 1正常 0冻结
+	// 状态 true正常 false冻结
 	Status *wrapperspb.BoolValue `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
 	// 创建开始时间 YYYY-MM-dd
 	CreatedAtStart string `protobuf:"bytes,7,opt,name=created_at_start,json=createdAtStart,proto3" json:"created_at_start,omitempty"`
