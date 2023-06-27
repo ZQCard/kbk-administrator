@@ -132,6 +132,7 @@ func (repo AdministratorRepo) UpdateAdministrator(ctx context.Context, domain *d
 	record.Nickname = domain.Nickname
 	record.Status = domain.Status
 	record.Mobile = domain.Mobile
+	record.Role = domain.Role
 	if err := getDbWithDomain(ctx, repo.data.db).Model(&record).Where("id = ?", record.Id).Save(&record).Error; err != nil {
 		return v1.ErrorSystemError("UpdateAdministrator Save Error : %s", err.Error())
 	}
