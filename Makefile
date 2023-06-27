@@ -125,6 +125,8 @@ initNewService:
 	@echo "project start success"
 .PHONY: docker
 docker:
+	@git add .
+	@git commit -m 'update'
 	@git pull
 	@docker build -t kbk-administrator .
 	@echo "docker build success"
@@ -135,5 +137,5 @@ docker:
     else \
         echo "Container kbk-administrator not found"; \
     fi
-	docker run -itd --name kbk-administrator -p 8000:8000 -p 9000:9000 -v /data/project/kratos-base-kit/kbk-administrator/configs/:/data/conf kbk-administrator
+	docker run -itd --name kbk-administrator -p 8010:8000 -p 9010:9000 -v /data/project/kratos-base-kit/kbk-administrator/configs/:/data/conf kbk-administrator
 	@echo "docker start success"
