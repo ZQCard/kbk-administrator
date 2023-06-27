@@ -125,5 +125,15 @@ initNewService:
 	@echo "project start success"
 .PHONY: docker
 docker:
-	docker build -t kbk-bff-admin:$(VERSION) .
-	docker run -itd --name kbk-bff-admin$(VERSION) -p 8000:8000 -p 9000:9000 -v /data/project/kratos-base-kit/kbk-bff-admin/configs/:/data/conf kbk-bff-admin:$(VERSION)
+	@git pull
+	@docker build -t kbk-administrator .
+	@echo "docker build success"
+	@container_id=$$(docker ps -a -f name=kbk-administrator -q); \
+    if [ -n "$$container_id" ]; then \
+        docker rm -f "$$container_id"; \
+        echo "Container kbk-administrator deleted"; \
+    else \
+        echo "Container kbk-administrator not found"; \
+    fi
+	docker run -itd --name kbk-administrator -p 8000:8000 -p 9000:9000 -v /data/project/kratos-base-kit/kbk-administrator/configs/:/data/conf kbk-administrator
+	@echo "docker start success"
