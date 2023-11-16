@@ -58,10 +58,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+                    content: {}
         post:
             tags:
                 - AdministratorService
@@ -95,10 +92,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+                    content: {}
         patch:
             tags:
                 - AdministratorService
@@ -113,10 +107,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+                    content: {}
     /administrator/login/success:
         patch:
             tags:
@@ -131,10 +122,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+                    content: {}
     /administrator/password/verify:
         post:
             tags:
@@ -150,10 +138,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+                    content: {}
     /administrator/status:
         patch:
             tags:
@@ -169,10 +154,7 @@ paths:
             responses:
                 "200":
                     description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/administrator.v1.CheckResponse'
+                    content: {}
     /administrators:
         get:
             tags:
@@ -291,12 +273,6 @@ components:
                 status:
                     type: boolean
                     description: 状态 true正常 false冻结
-        administrator.v1.CheckResponse:
-            type: object
-            properties:
-                success:
-                    type: boolean
-                    description: 是否成功
         administrator.v1.CreateAdministratorReq:
             type: object
             properties:

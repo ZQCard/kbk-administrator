@@ -1,4 +1,4 @@
-# kratos-base-kit(kbk)管理员服务
+# charging-station管理员服务
 
 ## 拥有以下接口
 接口文档请参考openapi.yaml文件

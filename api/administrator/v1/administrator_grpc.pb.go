@@ -13,6 +13,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -41,18 +42,18 @@ type AdministratorServiceClient interface {
 	// 新增管理员
 	CreateAdministrator(ctx context.Context, in *CreateAdministratorReq, opts ...grpc.CallOption) (*Administrator, error)
 	// 更新管理员
-	UpdateAdministrator(ctx context.Context, in *UpdateAdministratorReq, opts ...grpc.CallOption) (*CheckResponse, error)
+	UpdateAdministrator(ctx context.Context, in *UpdateAdministratorReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// 管理员详情
 	GetAdministrator(ctx context.Context, in *GetAdministratorReq, opts ...grpc.CallOption) (*Administrator, error)
 	// 删除管理员
-	DeleteAdministrator(ctx context.Context, in *DeleteAdministratorReq, opts ...grpc.CallOption) (*CheckResponse, error)
+	DeleteAdministrator(ctx context.Context, in *DeleteAdministratorReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// 恢复管理员
-	RecoverAdministrator(ctx context.Context, in *RecoverAdministratorReq, opts ...grpc.CallOption) (*CheckResponse, error)
+	RecoverAdministrator(ctx context.Context, in *RecoverAdministratorReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// 验证管理员密码
-	VerifyAdministratorPassword(ctx context.Context, in *VerifyAdministratorPasswordReq, opts ...grpc.CallOption) (*CheckResponse, error)
+	VerifyAdministratorPassword(ctx context.Context, in *VerifyAdministratorPasswordReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// 更改管理员状态
-	AdministratorStatusChange(ctx context.Context, in *AdministratorStatusChangeReq, opts ...grpc.CallOption) (*CheckResponse, error)
-	AdministratorLoginSuccess(ctx context.Context, in *AdministratorLoginSuccessReq, opts ...grpc.CallOption) (*CheckResponse, error)
+	AdministratorStatusChange(ctx context.Context, in *AdministratorStatusChangeReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AdministratorLoginSuccess(ctx context.Context, in *AdministratorLoginSuccessReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type administratorServiceClient struct {
@@ -81,8 +82,8 @@ func (c *administratorServiceClient) CreateAdministrator(ctx context.Context, in
 	return out, nil
 }
 
-func (c *administratorServiceClient) UpdateAdministrator(ctx context.Context, in *UpdateAdministratorReq, opts ...grpc.CallOption) (*CheckResponse, error) {
-	out := new(CheckResponse)
+func (c *administratorServiceClient) UpdateAdministrator(ctx context.Context, in *UpdateAdministratorReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, AdministratorService_UpdateAdministrator_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -99,8 +100,8 @@ func (c *administratorServiceClient) GetAdministrator(ctx context.Context, in *G
 	return out, nil
 }
 
-func (c *administratorServiceClient) DeleteAdministrator(ctx context.Context, in *DeleteAdministratorReq, opts ...grpc.CallOption) (*CheckResponse, error) {
-	out := new(CheckResponse)
+func (c *administratorServiceClient) DeleteAdministrator(ctx context.Context, in *DeleteAdministratorReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, AdministratorService_DeleteAdministrator_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -108,8 +109,8 @@ func (c *administratorServiceClient) DeleteAdministrator(ctx context.Context, in
 	return out, nil
 }
 
-func (c *administratorServiceClient) RecoverAdministrator(ctx context.Context, in *RecoverAdministratorReq, opts ...grpc.CallOption) (*CheckResponse, error) {
-	out := new(CheckResponse)
+func (c *administratorServiceClient) RecoverAdministrator(ctx context.Context, in *RecoverAdministratorReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, AdministratorService_RecoverAdministrator_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -117,8 +118,8 @@ func (c *administratorServiceClient) RecoverAdministrator(ctx context.Context, i
 	return out, nil
 }
 
-func (c *administratorServiceClient) VerifyAdministratorPassword(ctx context.Context, in *VerifyAdministratorPasswordReq, opts ...grpc.CallOption) (*CheckResponse, error) {
-	out := new(CheckResponse)
+func (c *administratorServiceClient) VerifyAdministratorPassword(ctx context.Context, in *VerifyAdministratorPasswordReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, AdministratorService_VerifyAdministratorPassword_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -126,8 +127,8 @@ func (c *administratorServiceClient) VerifyAdministratorPassword(ctx context.Con
 	return out, nil
 }
 
-func (c *administratorServiceClient) AdministratorStatusChange(ctx context.Context, in *AdministratorStatusChangeReq, opts ...grpc.CallOption) (*CheckResponse, error) {
-	out := new(CheckResponse)
+func (c *administratorServiceClient) AdministratorStatusChange(ctx context.Context, in *AdministratorStatusChangeReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, AdministratorService_AdministratorStatusChange_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -135,8 +136,8 @@ func (c *administratorServiceClient) AdministratorStatusChange(ctx context.Conte
 	return out, nil
 }
 
-func (c *administratorServiceClient) AdministratorLoginSuccess(ctx context.Context, in *AdministratorLoginSuccessReq, opts ...grpc.CallOption) (*CheckResponse, error) {
-	out := new(CheckResponse)
+func (c *administratorServiceClient) AdministratorLoginSuccess(ctx context.Context, in *AdministratorLoginSuccessReq, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, AdministratorService_AdministratorLoginSuccess_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -153,18 +154,18 @@ type AdministratorServiceServer interface {
 	// 新增管理员
 	CreateAdministrator(context.Context, *CreateAdministratorReq) (*Administrator, error)
 	// 更新管理员
-	UpdateAdministrator(context.Context, *UpdateAdministratorReq) (*CheckResponse, error)
+	UpdateAdministrator(context.Context, *UpdateAdministratorReq) (*emptypb.Empty, error)
 	// 管理员详情
 	GetAdministrator(context.Context, *GetAdministratorReq) (*Administrator, error)
 	// 删除管理员
-	DeleteAdministrator(context.Context, *DeleteAdministratorReq) (*CheckResponse, error)
+	DeleteAdministrator(context.Context, *DeleteAdministratorReq) (*emptypb.Empty, error)
 	// 恢复管理员
-	RecoverAdministrator(context.Context, *RecoverAdministratorReq) (*CheckResponse, error)
+	RecoverAdministrator(context.Context, *RecoverAdministratorReq) (*emptypb.Empty, error)
 	// 验证管理员密码
-	VerifyAdministratorPassword(context.Context, *VerifyAdministratorPasswordReq) (*CheckResponse, error)
+	VerifyAdministratorPassword(context.Context, *VerifyAdministratorPasswordReq) (*emptypb.Empty, error)
 	// 更改管理员状态
-	AdministratorStatusChange(context.Context, *AdministratorStatusChangeReq) (*CheckResponse, error)
-	AdministratorLoginSuccess(context.Context, *AdministratorLoginSuccessReq) (*CheckResponse, error)
+	AdministratorStatusChange(context.Context, *AdministratorStatusChangeReq) (*emptypb.Empty, error)
+	AdministratorLoginSuccess(context.Context, *AdministratorLoginSuccessReq) (*emptypb.Empty, error)
 	mustEmbedUnimplementedAdministratorServiceServer()
 }
 
@@ -178,25 +179,25 @@ func (UnimplementedAdministratorServiceServer) GetAdministratorList(context.Cont
 func (UnimplementedAdministratorServiceServer) CreateAdministrator(context.Context, *CreateAdministratorReq) (*Administrator, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAdministrator not implemented")
 }
-func (UnimplementedAdministratorServiceServer) UpdateAdministrator(context.Context, *UpdateAdministratorReq) (*CheckResponse, error) {
+func (UnimplementedAdministratorServiceServer) UpdateAdministrator(context.Context, *UpdateAdministratorReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAdministrator not implemented")
 }
 func (UnimplementedAdministratorServiceServer) GetAdministrator(context.Context, *GetAdministratorReq) (*Administrator, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAdministrator not implemented")
 }
-func (UnimplementedAdministratorServiceServer) DeleteAdministrator(context.Context, *DeleteAdministratorReq) (*CheckResponse, error) {
+func (UnimplementedAdministratorServiceServer) DeleteAdministrator(context.Context, *DeleteAdministratorReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAdministrator not implemented")
 }
-func (UnimplementedAdministratorServiceServer) RecoverAdministrator(context.Context, *RecoverAdministratorReq) (*CheckResponse, error) {
+func (UnimplementedAdministratorServiceServer) RecoverAdministrator(context.Context, *RecoverAdministratorReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RecoverAdministrator not implemented")
 }
-func (UnimplementedAdministratorServiceServer) VerifyAdministratorPassword(context.Context, *VerifyAdministratorPasswordReq) (*CheckResponse, error) {
+func (UnimplementedAdministratorServiceServer) VerifyAdministratorPassword(context.Context, *VerifyAdministratorPasswordReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyAdministratorPassword not implemented")
 }
-func (UnimplementedAdministratorServiceServer) AdministratorStatusChange(context.Context, *AdministratorStatusChangeReq) (*CheckResponse, error) {
+func (UnimplementedAdministratorServiceServer) AdministratorStatusChange(context.Context, *AdministratorStatusChangeReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdministratorStatusChange not implemented")
 }
-func (UnimplementedAdministratorServiceServer) AdministratorLoginSuccess(context.Context, *AdministratorLoginSuccessReq) (*CheckResponse, error) {
+func (UnimplementedAdministratorServiceServer) AdministratorLoginSuccess(context.Context, *AdministratorLoginSuccessReq) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdministratorLoginSuccess not implemented")
 }
 func (UnimplementedAdministratorServiceServer) mustEmbedUnimplementedAdministratorServiceServer() {}

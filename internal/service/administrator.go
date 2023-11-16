@@ -4,15 +4,15 @@ import (
 	"context"
 
 	"github.com/go-kratos/kratos/v2/log"
+	"google.golang.org/protobuf/types/known/emptypb"
 
-	administratorV1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
 	v1 "github.com/ZQCard/kbk-administrator/api/administrator/v1"
 	"github.com/ZQCard/kbk-administrator/internal/biz"
 	"github.com/ZQCard/kbk-administrator/internal/domain"
 )
 
 type AdministratorService struct {
-	administratorV1.UnimplementedAdministratorServiceServer
+	v1.UnimplementedAdministratorServiceServer
 	administratorUsecase *biz.AdministratorUsecase
 	log                  *log.Helper
 }
@@ -24,7 +24,7 @@ func NewAdministratorService(administratorUsecase *biz.AdministratorUsecase, log
 	}
 }
 
-func (s *AdministratorService) GetAdministratorList(ctx context.Context, reqData *administratorV1.GetAdministratorListReq) (*administratorV1.GetAdministratorListPageRes, error) {
+func (s *AdministratorService) GetAdministratorList(ctx context.Context, reqData *v1.GetAdministratorListReq) (*v1.GetAdministratorListPageRes, error) {
 	params := make(map[string]interface{})
 	params["username"] = reqData.Username
 	params["mobile"] = reqData.Mobile
@@ -38,7 +38,7 @@ func (s *AdministratorService) GetAdministratorList(ctx context.Context, reqData
 	if err != nil {
 		return nil, err
 	}
-	res := &administratorV1.GetAdministratorListPageRes{}
+	res := &v1.GetAdministratorListPageRes{}
 	res.Total = int64(count)
 	for _, v := range list {
 		res.List = append(res.List, toDomainAdministrator(v))
@@ -46,7 +46,7 @@ func (s *AdministratorService) GetAdministratorList(ctx context.Context, reqData
 	return res, nil
 }
 
-func (s *AdministratorService) GetAdministrator(ctx context.Context, req *administratorV1.GetAdministratorReq) (*administratorV1.Administrator, error) {
+func (s *AdministratorService) GetAdministrator(ctx context.Context, req *v1.GetAdministratorReq) (*v1.Administrator, error) {
 	params := map[string]interface{}{}
 	params["id"] = req.Id
 	params["username"] = req.Username
@@ -59,7 +59,7 @@ func (s *AdministratorService) GetAdministrator(ctx context.Context, req *admini
 	return toDomainAdministrator(res), nil
 }
 
-func (s *AdministratorService) CreateAdministrator(ctx context.Context, req *administratorV1.CreateAdministratorReq) (*administratorV1.Administrator, error) {
+func (s *AdministratorService) CreateAdministrator(ctx context.Context, req *v1.CreateAdministratorReq) (*v1.Administrator, error) {
 	res, err := s.administratorUsecase.CreateAdministrator(ctx, &domain.Administrator{
 		Username: req.Username,
 		Nickname: req.Nickname,
@@ -75,7 +75,7 @@ func (s *AdministratorService) CreateAdministrator(ctx context.Context, req *adm
 	return toDomainAdministrator(res), nil
 }
 
-func (s *AdministratorService) UpdateAdministrator(ctx context.Context, req *administratorV1.UpdateAdministratorReq) (*administratorV1.CheckResponse, error) {
+func (s *AdministratorService) UpdateAdministrator(ctx context.Context, req *v1.UpdateAdministratorReq) (*emptypb.Empty, error) {
 	err := s.administratorUsecase.UpdateAdministrator(ctx, &domain.Administrator{
 		Id:       req.Id,
 		Username: req.Username,
@@ -89,57 +89,64 @@ func (s *AdministratorService) UpdateAdministrator(ctx context.Context, req *adm
 	if err != nil {
 		return nil, err
 	}
-	return &administratorV1.CheckResponse{Success: true}, nil
+	return &emptypb.Empty{}, nil
 }
 
-func (s *AdministratorService) DeleteAdministrator(ctx context.Context, req *administratorV1.DeleteAdministratorReq) (*administratorV1.CheckResponse, error) {
+func (s *AdministratorService) DeleteAdministrator(ctx context.Context, req *v1.DeleteAdministratorReq) (*emptypb.Empty, error) {
 	err := s.administratorUsecase.DeleteAdministrator(ctx, &domain.Administrator{
 		Id: req.Id,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &administratorV1.CheckResponse{Success: true}, nil
+	return &emptypb.Empty{}, nil
 }
 
-func (s *AdministratorService) RecoverAdministrator(ctx context.Context, req *administratorV1.RecoverAdministratorReq) (*administratorV1.CheckResponse, error) {
+func (s *AdministratorService) RecoverAdministrator(ctx context.Context, req *v1.RecoverAdministratorReq) (*emptypb.Empty, error) {
 	err := s.administratorUsecase.RecoverAdministrator(ctx, &domain.Administrator{
 		Id: req.Id,
 	})
 	if err != nil {
 		return nil, err
 	}
-	return &administratorV1.CheckResponse{Success: true}, nil
+	return &emptypb.Empty{}, nil
 }
 
-func (s *AdministratorService) VerifyAdministratorPassword(ctx context.Context, req *administratorV1.VerifyAdministratorPasswordReq) (*administratorV1.CheckResponse, error) {
+func (s *AdministratorService) VerifyAdministratorPassword(ctx context.Context, req *v1.VerifyAdministratorPasswordReq) (*emptypb.Empty, error) {
 	ok, err := s.administratorUsecase.VerifyAdministratorPassword(ctx, req.Id, req.Password)
 	if err != nil {
 		return nil, err
 	}
-	return &administratorV1.CheckResponse{Success: ok}, nil
+	if !ok {
+		return &emptypb.Empty{}, v1.ErrorBadRequest("密码错误")
+	}
+	return &emptypb.Empty{}, nil
 }
 
-func (s *AdministratorService) AdministratorStatusChange(ctx context.Context, req *administratorV1.AdministratorStatusChangeReq) (*administratorV1.CheckResponse, error) {
+func (s *AdministratorService) AdministratorStatusChange(ctx context.Context, req *v1.AdministratorStatusChangeReq) (*emptypb.Empty, error) {
 	ok, err := s.administratorUsecase.AdministratorStatusChange(ctx, req.Id, req.Status)
 	if err != nil {
 		return nil, err
 	}
-	return &administratorV1.CheckResponse{Success: ok}, nil
-}
-
-func (s *AdministratorService) AdministratorLoginSuccess(ctx context.Context, req *v1.AdministratorLoginSuccessReq) (*administratorV1.CheckResponse, error) {
-	success, err := s.administratorUsecase.UpdateAdministratorLoginInfo(ctx, req.Id, req.LastLoginIp, req.LastLoginTime)
-	if err == nil {
-		success = true
+	if !ok {
+		return &emptypb.Empty{}, v1.ErrorSystemError("状态更改失败")
 	}
-	return &administratorV1.CheckResponse{
-		Success: success,
-	}, nil
+	return &emptypb.Empty{}, nil
 }
 
-func toDomainAdministrator(administrator *domain.Administrator) *administratorV1.Administrator {
-	return &administratorV1.Administrator{
+func (s *AdministratorService) AdministratorLoginSuccess(ctx context.Context, req *v1.AdministratorLoginSuccessReq) (*emptypb.Empty, error) {
+	ok, err := s.administratorUsecase.UpdateAdministratorLoginInfo(ctx, req.Id, req.LastLoginIp, req.LastLoginTime)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return &emptypb.Empty{}, v1.ErrorSystemError("更新登录信息失败")
+	}
+	return &emptypb.Empty{}, nil
+}
+
+func toDomainAdministrator(administrator *domain.Administrator) *v1.Administrator {
+	return &v1.Administrator{
 		Id:        administrator.Id,
 		Username:  administrator.Username,
 		Mobile:    administrator.Mobile,

@@ -483,10 +483,10 @@ func (m *CreateAdministratorReq) validate(all bool) error {
 
 	var errors []error
 
-	if l := utf8.RuneCountInString(m.GetUsername()); l < 4 || l > 20 {
+	if l := utf8.RuneCountInString(m.GetUsername()); l < 5 || l > 20 {
 		err := CreateAdministratorReqValidationError{
 			field:  "Username",
-			reason: "value length must be between 4 and 20 runes, inclusive",
+			reason: "value length must be between 5 and 20 runes, inclusive",
 		}
 		if !all {
 			return err
@@ -497,7 +497,7 @@ func (m *CreateAdministratorReq) validate(all bool) error {
 	if !_CreateAdministratorReq_Username_Pattern.MatchString(m.GetUsername()) {
 		err := CreateAdministratorReqValidationError{
 			field:  "Username",
-			reason: "value does not match regex pattern \"^[a-zA-Z][a-zA-Z0-9_]{3,15}$\"",
+			reason: "value does not match regex pattern \"^[a-zA-Z][a-zA-Z0-9_]{5,15}$\"",
 		}
 		if !all {
 			return err
@@ -642,7 +642,7 @@ var _ interface {
 	ErrorName() string
 } = CreateAdministratorReqValidationError{}
 
-var _CreateAdministratorReq_Username_Pattern = regexp.MustCompile("^[a-zA-Z][a-zA-Z0-9_]{3,15}$")
+var _CreateAdministratorReq_Username_Pattern = regexp.MustCompile("^[a-zA-Z][a-zA-Z0-9_]{5,15}$")
 
 var _CreateAdministratorReq_Mobile_Pattern = regexp.MustCompile("^1[0-9]{10}$")
 
@@ -1527,105 +1527,3 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = AdministratorLoginSuccessReqValidationError{}
-
-// Validate checks the field values on CheckResponse with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *CheckResponse) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on CheckResponse with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in CheckResponseMultiError, or
-// nil if none found.
-func (m *CheckResponse) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *CheckResponse) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for Success
-
-	if len(errors) > 0 {
-		return CheckResponseMultiError(errors)
-	}
-
-	return nil
-}
-
-// CheckResponseMultiError is an error wrapping multiple validation errors
-// returned by CheckResponse.ValidateAll() if the designated constraints
-// aren't met.
-type CheckResponseMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m CheckResponseMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m CheckResponseMultiError) AllErrors() []error { return m }
-
-// CheckResponseValidationError is the validation error returned by
-// CheckResponse.Validate if the designated constraints aren't met.
-type CheckResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e CheckResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e CheckResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e CheckResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e CheckResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e CheckResponseValidationError) ErrorName() string { return "CheckResponseValidationError" }
-
-// Error satisfies the builtin error interface
-func (e CheckResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sCheckResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = CheckResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = CheckResponseValidationError{}

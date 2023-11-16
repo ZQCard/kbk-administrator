@@ -11,6 +11,8 @@ import "openapiv3/annotations.proto";
 
 import "google/protobuf/wrappers.proto";
 
+import "google/protobuf/empty.proto";
+
 option go_package = "github.com/ZQCard/kbk-administrator/api/administrator/v1;v1";
 
 option (openapi.v3.document) = {
@@ -43,7 +45,7 @@ service AdministratorService {
         };
     };
     // 更新管理员
-	rpc UpdateAdministrator (UpdateAdministratorReq) returns (CheckResponse){
+	rpc UpdateAdministrator (UpdateAdministratorReq) returns (google.protobuf.Empty){
         option (google.api.http) = {
             put:"/administrator"
             body:"*"
@@ -56,34 +58,34 @@ service AdministratorService {
         };
     };
     // 删除管理员
-	rpc DeleteAdministrator (DeleteAdministratorReq) returns (CheckResponse){
+	rpc DeleteAdministrator (DeleteAdministratorReq) returns (google.protobuf.Empty){
         option (google.api.http) = {
             delete:"/administrator"
         };
     };
     // 恢复管理员
-	rpc RecoverAdministrator (RecoverAdministratorReq) returns (CheckResponse){
+	rpc RecoverAdministrator (RecoverAdministratorReq) returns (google.protobuf.Empty){
         option (google.api.http) = {
             patch:"/administrator"
             body:"*"
         };
     };
     // 验证管理员密码
-	rpc VerifyAdministratorPassword(VerifyAdministratorPasswordReq) returns (CheckResponse){
+	rpc VerifyAdministratorPassword(VerifyAdministratorPasswordReq) returns (google.protobuf.Empty){
         option (google.api.http) = {
             post:"/administrator/password/verify"
             body:"*"
         };
     };
      // 更改管理员状态
-	rpc AdministratorStatusChange(AdministratorStatusChangeReq) returns (CheckResponse){
+	rpc AdministratorStatusChange(AdministratorStatusChangeReq) returns (google.protobuf.Empty){
         option (google.api.http) = {
             patch:"/administrator/status"
             body:"*"
         };
     };
 
-    rpc AdministratorLoginSuccess(AdministratorLoginSuccessReq) returns (CheckResponse){
+    rpc AdministratorLoginSuccess(AdministratorLoginSuccessReq) returns (google.protobuf.Empty){
         option (google.api.http) = {
             patch:"/administrator/login/success"
             body:"*"
@@ -154,8 +156,8 @@ message CreateAdministratorReq {
     // 用户名
 	string username = 1[
         (validate.rules).string = {
-            pattern:   "^[a-zA-Z][a-zA-Z0-9_]{3,15}$",
-            min_len: 4, 
+            pattern:   "^[a-zA-Z][a-zA-Z0-9_]{5,15}$",
+            min_len: 5, 
             max_len: 20
         }    
     ];
@@ -298,9 +300,4 @@ message AdministratorLoginSuccessReq {
 	int64 id = 1;
 	string last_login_time = 2;
 	string last_login_ip = 3;
-}
-
-message CheckResponse {
-    // 是否成功
-	bool success = 1;
 }

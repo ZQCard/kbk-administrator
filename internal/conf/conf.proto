@@ -6,11 +6,10 @@ option go_package = "github.com/ZQCard/kbk-administrator/internal/conf;conf";
 import "google/protobuf/duration.proto";
 
 message Bootstrap {
-  Env env = 1;
-  Service service = 2;
-  Trace trace = 3;
-  Server server = 4;
-  Data data = 5;
+  Service service = 1;
+  Env env = 2;
+  Server server = 3;
+  Data data = 4;
 }
 
 message Service {
@@ -52,17 +51,5 @@ message Data {
   }
   Database database = 1;
   Redis redis = 2;
-}
-
-
-message Registry {
-  message Etcd {
-    string address = 1;
-  }
-  Etcd etcd = 1;
-}
-
-message Trace {
-  string endpoint = 1;
 }
 

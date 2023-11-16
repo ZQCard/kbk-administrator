@@ -10,6 +10,7 @@ import (
 	context "context"
 	http "github.com/go-kratos/kratos/v2/transport/http"
 	binding "github.com/go-kratos/kratos/v2/transport/http/binding"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -30,15 +31,15 @@ const OperationAdministratorServiceUpdateAdministrator = "/administrator.v1.Admi
 const OperationAdministratorServiceVerifyAdministratorPassword = "/administrator.v1.AdministratorService/VerifyAdministratorPassword"
 
 type AdministratorServiceHTTPServer interface {
-	AdministratorLoginSuccess(context.Context, *AdministratorLoginSuccessReq) (*CheckResponse, error)
-	AdministratorStatusChange(context.Context, *AdministratorStatusChangeReq) (*CheckResponse, error)
+	AdministratorLoginSuccess(context.Context, *AdministratorLoginSuccessReq) (*emptypb.Empty, error)
+	AdministratorStatusChange(context.Context, *AdministratorStatusChangeReq) (*emptypb.Empty, error)
 	CreateAdministrator(context.Context, *CreateAdministratorReq) (*Administrator, error)
-	DeleteAdministrator(context.Context, *DeleteAdministratorReq) (*CheckResponse, error)
+	DeleteAdministrator(context.Context, *DeleteAdministratorReq) (*emptypb.Empty, error)
 	GetAdministrator(context.Context, *GetAdministratorReq) (*Administrator, error)
 	GetAdministratorList(context.Context, *GetAdministratorListReq) (*GetAdministratorListPageRes, error)
-	RecoverAdministrator(context.Context, *RecoverAdministratorReq) (*CheckResponse, error)
-	UpdateAdministrator(context.Context, *UpdateAdministratorReq) (*CheckResponse, error)
-	VerifyAdministratorPassword(context.Context, *VerifyAdministratorPasswordReq) (*CheckResponse, error)
+	RecoverAdministrator(context.Context, *RecoverAdministratorReq) (*emptypb.Empty, error)
+	UpdateAdministrator(context.Context, *UpdateAdministratorReq) (*emptypb.Empty, error)
+	VerifyAdministratorPassword(context.Context, *VerifyAdministratorPasswordReq) (*emptypb.Empty, error)
 }
 
 func RegisterAdministratorServiceHTTPServer(s *http.Server, srv AdministratorServiceHTTPServer) {
@@ -106,7 +107,7 @@ func _AdministratorService_UpdateAdministrator0_HTTP_Handler(srv AdministratorSe
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -144,7 +145,7 @@ func _AdministratorService_DeleteAdministrator0_HTTP_Handler(srv AdministratorSe
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -163,7 +164,7 @@ func _AdministratorService_RecoverAdministrator0_HTTP_Handler(srv AdministratorS
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -182,7 +183,7 @@ func _AdministratorService_VerifyAdministratorPassword0_HTTP_Handler(srv Adminis
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -201,7 +202,7 @@ func _AdministratorService_AdministratorStatusChange0_HTTP_Handler(srv Administr
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
@@ -220,21 +221,21 @@ func _AdministratorService_AdministratorLoginSuccess0_HTTP_Handler(srv Administr
 		if err != nil {
 			return err
 		}
-		reply := out.(*CheckResponse)
+		reply := out.(*emptypb.Empty)
 		return ctx.Result(200, reply)
 	}
 }
 
 type AdministratorServiceHTTPClient interface {
-	AdministratorLoginSuccess(ctx context.Context, req *AdministratorLoginSuccessReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	AdministratorStatusChange(ctx context.Context, req *AdministratorStatusChangeReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
+	AdministratorLoginSuccess(ctx context.Context, req *AdministratorLoginSuccessReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	AdministratorStatusChange(ctx context.Context, req *AdministratorStatusChangeReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
 	CreateAdministrator(ctx context.Context, req *CreateAdministratorReq, opts ...http.CallOption) (rsp *Administrator, err error)
-	DeleteAdministrator(ctx context.Context, req *DeleteAdministratorReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
+	DeleteAdministrator(ctx context.Context, req *DeleteAdministratorReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
 	GetAdministrator(ctx context.Context, req *GetAdministratorReq, opts ...http.CallOption) (rsp *Administrator, err error)
 	GetAdministratorList(ctx context.Context, req *GetAdministratorListReq, opts ...http.CallOption) (rsp *GetAdministratorListPageRes, err error)
-	RecoverAdministrator(ctx context.Context, req *RecoverAdministratorReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	UpdateAdministrator(ctx context.Context, req *UpdateAdministratorReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
-	VerifyAdministratorPassword(ctx context.Context, req *VerifyAdministratorPasswordReq, opts ...http.CallOption) (rsp *CheckResponse, err error)
+	RecoverAdministrator(ctx context.Context, req *RecoverAdministratorReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	UpdateAdministrator(ctx context.Context, req *UpdateAdministratorReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
+	VerifyAdministratorPassword(ctx context.Context, req *VerifyAdministratorPasswordReq, opts ...http.CallOption) (rsp *emptypb.Empty, err error)
 }
 
 type AdministratorServiceHTTPClientImpl struct {
@@ -245,8 +246,8 @@ func NewAdministratorServiceHTTPClient(client *http.Client) AdministratorService
 	return &AdministratorServiceHTTPClientImpl{client}
 }
 
-func (c *AdministratorServiceHTTPClientImpl) AdministratorLoginSuccess(ctx context.Context, in *AdministratorLoginSuccessReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdministratorServiceHTTPClientImpl) AdministratorLoginSuccess(ctx context.Context, in *AdministratorLoginSuccessReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/administrator/login/success"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdministratorServiceAdministratorLoginSuccess))
@@ -258,8 +259,8 @@ func (c *AdministratorServiceHTTPClientImpl) AdministratorLoginSuccess(ctx conte
 	return &out, err
 }
 
-func (c *AdministratorServiceHTTPClientImpl) AdministratorStatusChange(ctx context.Context, in *AdministratorStatusChangeReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdministratorServiceHTTPClientImpl) AdministratorStatusChange(ctx context.Context, in *AdministratorStatusChangeReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/administrator/status"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdministratorServiceAdministratorStatusChange))
@@ -284,8 +285,8 @@ func (c *AdministratorServiceHTTPClientImpl) CreateAdministrator(ctx context.Con
 	return &out, err
 }
 
-func (c *AdministratorServiceHTTPClientImpl) DeleteAdministrator(ctx context.Context, in *DeleteAdministratorReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdministratorServiceHTTPClientImpl) DeleteAdministrator(ctx context.Context, in *DeleteAdministratorReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/administrator"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAdministratorServiceDeleteAdministrator))
@@ -323,8 +324,8 @@ func (c *AdministratorServiceHTTPClientImpl) GetAdministratorList(ctx context.Co
 	return &out, err
 }
 
-func (c *AdministratorServiceHTTPClientImpl) RecoverAdministrator(ctx context.Context, in *RecoverAdministratorReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdministratorServiceHTTPClientImpl) RecoverAdministrator(ctx context.Context, in *RecoverAdministratorReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/administrator"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdministratorServiceRecoverAdministrator))
@@ -336,8 +337,8 @@ func (c *AdministratorServiceHTTPClientImpl) RecoverAdministrator(ctx context.Co
 	return &out, err
 }
 
-func (c *AdministratorServiceHTTPClientImpl) UpdateAdministrator(ctx context.Context, in *UpdateAdministratorReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdministratorServiceHTTPClientImpl) UpdateAdministrator(ctx context.Context, in *UpdateAdministratorReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/administrator"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdministratorServiceUpdateAdministrator))
@@ -349,8 +350,8 @@ func (c *AdministratorServiceHTTPClientImpl) UpdateAdministrator(ctx context.Con
 	return &out, err
 }
 
-func (c *AdministratorServiceHTTPClientImpl) VerifyAdministratorPassword(ctx context.Context, in *VerifyAdministratorPasswordReq, opts ...http.CallOption) (*CheckResponse, error) {
-	var out CheckResponse
+func (c *AdministratorServiceHTTPClientImpl) VerifyAdministratorPassword(ctx context.Context, in *VerifyAdministratorPasswordReq, opts ...http.CallOption) (*emptypb.Empty, error) {
+	var out emptypb.Empty
 	pattern := "/administrator/password/verify"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAdministratorServiceVerifyAdministratorPassword))
